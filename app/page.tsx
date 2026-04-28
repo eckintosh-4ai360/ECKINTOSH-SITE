@@ -19,6 +19,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { SiteHeader } from '@/components/site-header'
+import { HeroCarousel } from '@/components/hero-carousel'
 
 type RecentProject = {
   title: string
@@ -97,8 +98,8 @@ export default function Home() {
                 Trusted by 100+ enterprises worldwide • Industry-leading expertise • 24/7 support
               </p>
             </div>
-            <div className="bg-[url('/umat.jpeg')] bg-cover bg-center rounded-full h-[400px] w-[400px] flex items-center justify-center">
-              
+            <div className="flex justify-center md:justify-end">
+              <HeroCarousel />
             </div>
           </div>
         </div>
