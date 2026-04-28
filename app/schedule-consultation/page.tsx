@@ -19,6 +19,9 @@ export default function ScheduleConsultation() {
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
+  const fieldClassName =
+    'w-full rounded-2xl border border-white/70 bg-white/58 px-4 py-3 text-sm text-foreground shadow-[inset_0_1px_0_rgba(255,255,255,0.55)] backdrop-blur-md transition placeholder:text-muted-foreground/90 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/35'
+  const labelClassName = 'mb-2 block text-sm font-semibold text-slate-700'
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target
@@ -51,7 +54,7 @@ export default function ScheduleConsultation() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
+    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(2,141,163,0.14),transparent_28%),radial-gradient(circle_at_top_right,rgba(15,23,42,0.08),transparent_24%),linear-gradient(180deg,#f7fbfb_0%,#ffffff_36%,#f7fbfb_100%)]">
       <SiteHeader />
 
       {/* Hero Section */}
@@ -69,15 +72,15 @@ export default function ScheduleConsultation() {
       </section>
 
       {/* Main Content */}
-      <section className="mt-4 sm:mt-8">
+      <section className="mt-4 pb-14 sm:mt-8 sm:pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(300px,0.85fr)] lg:items-start">
             {/* Form Section */}
-            <div className="lg:col-span-2">
+            <div>
               {submitted ? (
-                <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-12 text-center">
+                <div className="rounded-[28px] border border-white/70 bg-[linear-gradient(180deg,rgba(236,253,245,0.9),rgba(240,253,250,0.78))] p-8 text-center shadow-[0_24px_70px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:p-10">
                   <div className="flex justify-center mb-6">
-                    <div className="bg-green-100 w-20 h-20 rounded-full flex items-center justify-center">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white/70 shadow-[inset_0_1px_0_rgba(255,255,255,0.75)]">
                       <CheckCircle className="text-green-600" size={40} />
                     </div>
                   </div>
@@ -85,7 +88,7 @@ export default function ScheduleConsultation() {
                   <p className="text-lg text-gray-600 mb-8">
                     We&apos;ve received your consultation request. Our team will review your information and contact you within 24 hours to confirm your appointment and discuss your specific needs.
                   </p>
-                  <div className="space-y-4 text-left bg-white rounded-lg p-6 mb-8">
+                  <div className="mb-8 space-y-4 rounded-2xl border border-white/70 bg-white/66 p-6 text-left backdrop-blur-md">
                     <p className="text-gray-700">
                       <strong>What happens next:</strong>
                     </p>
@@ -113,13 +116,24 @@ export default function ScheduleConsultation() {
                   </Link>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="bg-white rounded-2xl shadow-lg p-8 sm:p-10">
-                  <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-gray-900">Tell Us About Your Project</h2>
+                <form
+                  onSubmit={handleSubmit}
+                  className="rounded-[28px] border border-white/75 bg-white/58 p-5 shadow-[0_28px_80px_rgba(15,23,42,0.08)] backdrop-blur-xl sm:p-7 lg:p-8"
+                >
+                  <div className="mb-7 flex flex-col gap-2">
+                    <span className="inline-flex w-fit rounded-full border border-primary/15 bg-primary/8 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] text-primary">
+                      Project details
+                    </span>
+                    <h2 className="text-2xl font-bold text-slate-900 sm:text-[2rem]">Tell Us About Your Project</h2>
+                    <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
+                      Share a few details and we&apos;ll prepare a focused consultation around your goals, constraints, and timeline.
+                    </p>
+                  </div>
 
                   {/* Name and Email Row */}
-                  <div className="grid sm:grid-cols-2 gap-6 mb-6">
+                  <div className="mb-4 grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="name" className={labelClassName}>
                         Full Name *
                       </label>
                       <input
@@ -129,12 +143,12 @@ export default function ScheduleConsultation() {
                         value={formData.name}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100"
+                        className={fieldClassName}
                         placeholder="John Doe"
                       />
                     </div>
                     <div>
-                      <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="email" className={labelClassName}>
                         Email Address *
                       </label>
                       <input
@@ -144,16 +158,16 @@ export default function ScheduleConsultation() {
                         value={formData.email}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100"
+                        className={fieldClassName}
                         placeholder="john@company.com"
                       />
                     </div>
                   </div>
 
                   {/* Company and Phone Row */}
-                  <div className="grid sm:grid-cols-2 gap-6 mb-6">
+                  <div className="mb-4 grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="company" className={labelClassName}>
                         Company Name
                       </label>
                       <input
@@ -162,12 +176,12 @@ export default function ScheduleConsultation() {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100"
+                        className={fieldClassName}
                         placeholder="Your Company"
                       />
                     </div>
                     <div>
-                      <label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="phone" className={labelClassName}>
                         Phone Number
                       </label>
                       <input
@@ -176,15 +190,15 @@ export default function ScheduleConsultation() {
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100"
+                        className={fieldClassName}
                         placeholder="+1 (555) 123-4567"
                       />
                     </div>
                   </div>
 
                   {/* Consultation Type */}
-                  <div className="mb-6">
-                    <label htmlFor="consultationType" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <div className="mb-4">
+                    <label htmlFor="consultationType" className={labelClassName}>
                       What can we help you with? *
                     </label>
                     <select
@@ -192,7 +206,7 @@ export default function ScheduleConsultation() {
                       name="consultationType"
                       value={formData.consultationType}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100"
+                      className={fieldClassName}
                     >
                       <option value="general">General Consultation</option>
                       <option value="cloud">Cloud Infrastructure</option>
@@ -205,9 +219,9 @@ export default function ScheduleConsultation() {
                   </div>
 
                   {/* Date and Time */}
-                  <div className="grid sm:grid-cols-2 gap-6 mb-6">
+                  <div className="mb-4 grid gap-4 sm:grid-cols-2">
                     <div>
-                      <label htmlFor="preferredDate" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="preferredDate" className={labelClassName}>
                         Preferred Date
                       </label>
                       <input
@@ -216,11 +230,11 @@ export default function ScheduleConsultation() {
                         name="preferredDate"
                         value={formData.preferredDate}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100"
+                        className={fieldClassName}
                       />
                     </div>
                     <div>
-                      <label htmlFor="preferredTime" className="block text-sm font-semibold text-gray-700 mb-2">
+                      <label htmlFor="preferredTime" className={labelClassName}>
                         Preferred Time
                       </label>
                       <select
@@ -228,7 +242,7 @@ export default function ScheduleConsultation() {
                         name="preferredTime"
                         value={formData.preferredTime}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100"
+                        className={fieldClassName}
                       >
                         <option value="">Select a time</option>
                         <option value="9am">9:00 AM</option>
@@ -243,8 +257,8 @@ export default function ScheduleConsultation() {
                   </div>
 
                   {/* Budget */}
-                  <div className="mb-6">
-                    <label htmlFor="budget" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <div className="mb-4">
+                    <label htmlFor="budget" className={labelClassName}>
                       Estimated Budget Range
                     </label>
                     <select
@@ -252,7 +266,7 @@ export default function ScheduleConsultation() {
                       name="budget"
                       value={formData.budget}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100"
+                      className={fieldClassName}
                     >
                       <option value="">Select a range</option>
                       <option value="under50k">Under $50,000</option>
@@ -264,8 +278,8 @@ export default function ScheduleConsultation() {
                   </div>
 
                   {/* Challenges */}
-                  <div className="mb-8">
-                    <label htmlFor="challenges" className="block text-sm font-semibold text-gray-700 mb-2">
+                  <div className="mb-6">
+                    <label htmlFor="challenges" className={labelClassName}>
                       Describe your main challenges or goals
                     </label>
                     <textarea
@@ -273,8 +287,8 @@ export default function ScheduleConsultation() {
                       name="challenges"
                       value={formData.challenges}
                       onChange={handleChange}
-                      rows={5}
-                      className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:outline-none focus:border-primary focus:ring-2 focus:ring-blue-100 resize-none"
+                      rows={4}
+                      className={`${fieldClassName} min-h-[120px] resize-none`}
                       placeholder="Tell us about the challenges you&apos;re facing and what you hope to achieve..."
                     />
                   </div>
@@ -283,16 +297,16 @@ export default function ScheduleConsultation() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-foreground text-white py-4 rounded-lg hover:shadow-lg transition font-semibold flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="flex w-full items-center justify-center gap-2 rounded-2xl bg-foreground px-5 py-3.5 text-sm font-semibold text-white shadow-[0_16px_40px_rgba(15,23,42,0.16)] transition hover:shadow-lg disabled:opacity-50"
                   >
                     {loading ? 'Scheduling...' : (
                       <>
-                        Schedule Consultation <ArrowRight size={20} />
+                        Schedule Consultation <ArrowRight size={18} />
                       </>
                     )}
                   </button>
 
-                  <p className="text-center text-gray-500 text-sm mt-6">
+                  <p className="mt-5 text-center text-sm text-gray-500">
                     We respect your privacy. We&apos;ll only use your information to contact you about your consultation.
                   </p>
                 </form>
@@ -302,10 +316,10 @@ export default function ScheduleConsultation() {
             {/* Sidebar - Benefits & Info */}
             <div className="space-y-8">
               {/* Info Cards */}
-              <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-4 border border-blue-100">
+              <div className="rounded-[28px] border border-white/70 bg-white/52 p-5 shadow-[0_24px_70px_rgba(15,23,42,0.06)] backdrop-blur-xl">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">What to Expect</h3>
-                <div className="space-y-6">
-                  <div className="flex gap-4">
+                <div className="space-y-5">
+                  <div className="flex gap-4 rounded-2xl border border-white/65 bg-white/52 p-4">
                     <div className="flex-shrink-0">
                       <Clock className="text-primary" size={24} />
                     </div>
@@ -317,7 +331,7 @@ export default function ScheduleConsultation() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 rounded-2xl border border-white/65 bg-white/52 p-4">
                     <div className="flex-shrink-0">
                       <Users className="text-primary" size={24} />
                     </div>
@@ -329,7 +343,7 @@ export default function ScheduleConsultation() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 rounded-2xl border border-white/65 bg-white/52 p-4">
                     <div className="flex-shrink-0">
                       <Zap className="text-primary" size={24} />
                     </div>
@@ -341,7 +355,7 @@ export default function ScheduleConsultation() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex gap-4 rounded-2xl border border-white/65 bg-white/52 p-4">
                     <div className="flex-shrink-0">
                       <Check className="text-primary" size={24} />
                     </div>
@@ -356,7 +370,7 @@ export default function ScheduleConsultation() {
               </div>
 
               {/* Testimonial */}
-              <div className="bg-white rounded-2xl shadow-lg p-4 border border-gray-200">
+              <div className="rounded-[28px] border border-white/70 bg-white/56 p-5 shadow-[0_24px_70px_rgba(15,23,42,0.06)] backdrop-blur-xl">
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={20} className="fill-yellow-400 text-yellow-400" />
@@ -372,7 +386,7 @@ export default function ScheduleConsultation() {
               </div>
 
               {/* Contact Info */}
-              <div className="bg-primary rounded-2xl p-8 text-white">
+              <div className="rounded-[28px] border border-primary/15 bg-[linear-gradient(180deg,rgba(2,141,163,0.96),rgba(2,141,163,0.84))] p-6 text-white shadow-[0_24px_70px_rgba(2,141,163,0.22)] backdrop-blur-xl sm:p-8">
                 <h4 className="text-lg font-bold mb-6">Quick Contact</h4>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
