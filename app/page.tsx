@@ -75,7 +75,7 @@ export default function Home() {
       <SiteHeader />
 
       {/* Hero Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-[url('/mainbg.png')] bg-cover bg-center bg-no-repeat">
+      <section className="bg-background py-20 px-4 sm:px-6 lg:px-8 md:bg-[url('/mainbg.png')] md:bg-cover md:bg-center md:bg-no-repeat">
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
