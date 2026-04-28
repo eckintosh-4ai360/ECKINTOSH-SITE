@@ -55,13 +55,13 @@ export default function ScheduleConsultation() {
       <SiteHeader />
 
       {/* Hero Section */}
-      <section className="py-12 sm:py-16 bg-gradient-to-r from-blue-600 to-cyan-500 text-white">
+      <section className="pt-12 sm:pt-6 bg-gradient-to-r from-bg-primary to-bg-primary text-foreground">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-2xl">
             <h1 className="text-4xl sm:text-5xl font-bold mb-4">
               Schedule Your Consultation
             </h1>
-            <p className="text-xl text-blue-100">
+            <p className="text-xl">
               Connect with our experts to discuss your technology challenges and discover how we can help transform your business.
             </p>
           </div>
@@ -69,7 +69,7 @@ export default function ScheduleConsultation() {
       </section>
 
       {/* Main Content */}
-      <section className="py-12 sm:py-20">
+      <section className="mt-4 sm:mt-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-3 gap-12">
             {/* Form Section */}
@@ -283,7 +283,7 @@ export default function ScheduleConsultation() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-gradient-to-r from-blue-600 to-cyan-500 text-white py-4 rounded-lg hover:shadow-lg transition font-semibold flex items-center justify-center gap-2 disabled:opacity-50"
+                    className="w-full bg-foreground text-white py-4 rounded-lg hover:shadow-lg transition font-semibold flex items-center justify-center gap-2 disabled:opacity-50"
                   >
                     {loading ? 'Scheduling...' : (
                       <>
@@ -356,7 +356,7 @@ export default function ScheduleConsultation() {
               </div>
 
               {/* Testimonial */}
-              <div className="bg-white rounded-2xl shadow-lg p-8 border border-gray-200">
+              <div className="bg-white rounded-2xl shadow-lg p-4 border border-gray-200">
                 <div className="flex gap-1 mb-4">
                   {[...Array(5)].map((_, i) => (
                     <Star key={i} size={20} className="fill-yellow-400 text-yellow-400" />
@@ -372,15 +372,15 @@ export default function ScheduleConsultation() {
               </div>
 
               {/* Contact Info */}
-              <div className="bg-gradient-to-br from-blue-600 to-cyan-500 rounded-2xl p-8 text-white">
+              <div className="bg-primary rounded-2xl p-8 text-white">
                 <h4 className="text-lg font-bold mb-6">Quick Contact</h4>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <Phone size={20} className="flex-shrink-0 mt-1" />
                     <div>
                       <p className="font-semibold mb-1">Call Us</p>
-                      <a href="tel:+15551234567" className="text-blue-100 hover:text-white transition">
-                        +1 (555) 123-4567
+                      <a href="tel:+233531152121" className="text-blue-100 hover:text-white transition">
+                        +233 (0) 53 115 2121
                       </a>
                     </div>
                   </div>
@@ -389,7 +389,7 @@ export default function ScheduleConsultation() {
                     <div>
                       <p className="font-semibold mb-1">Email</p>
                       <a href="mailto:hello@eckintosh.com" className="text-blue-100 hover:text-white transition">
-                        hello@eckintosh.com
+                        eckintosh@gmail.com
                       </a>
                     </div>
                   </div>
