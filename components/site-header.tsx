@@ -104,18 +104,7 @@ export function SiteHeader({
 
         {mobileMenuOpen && (
           <div className="mt-3 rounded-[28px] border border-border/80 bg-white/95 p-4 shadow-[0_24px_60px_rgba(15,23,42,0.1)] lg:hidden">
-            <div className="mb-3 flex items-center justify-between rounded-2xl bg-slate-50 px-4 py-3">
-              <div>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-                  Navigation
-                </p>
-                <p className="text-sm font-semibold text-foreground">Jump to a section</p>
-              </div>
-              <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
-                {navigation.length} links
-              </span>
-            </div>
-
+            
             <div className="grid gap-2">
               {navigation.map((item) => (
                 <Link
