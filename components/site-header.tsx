@@ -24,9 +24,9 @@ type NavigationItem = {
 const navigation: NavigationItem[] = [
   { icon: House, label: 'Home', href: '/' },
   { icon: BriefcaseBusiness, label: 'Services', href: '/#services' },
-  { icon: Building2, label: 'About', href: '/#about' },
-  { icon: FolderKanban, label: 'Work', href: '/#portfolio' },
-  { icon: MessageSquare, label: 'Contact', href: '/#contact' },
+  { icon: Building2, label: 'About', href: '/about' },
+  { icon: FolderKanban, label: 'Work', href: '/portfolio' },
+  { icon: MessageSquare, label: 'Contact', href: '/contact' },
 ]
 
 type SiteHeaderProps = {

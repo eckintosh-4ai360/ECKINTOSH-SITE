@@ -1,7 +1,6 @@
 'use client'
 
 import { ArrowRight, Check, Award, Users, Globe, Target } from 'lucide-react'
-import Link from 'next/link'
 
 export default function About() {
   return (

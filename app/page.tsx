@@ -18,7 +18,6 @@ import {
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { SiteHeader } from '@/components/site-header'
 import { HeroCarousel } from '@/components/hero-carousel'
 
 type RecentProject = {
@@ -72,8 +71,6 @@ const recentProjects: RecentProject[] = [
 export default function Home() {
   return (
     <div id="top" className="min-h-screen bg-background text-foreground">
-      <SiteHeader />
-
       {/* Hero Section */}
       <section className="bg-background py-20 px-4 sm:px-6 lg:px-8 md:bg-[url('/mainbg.png')] md:bg-cover md:bg-center md:bg-no-repeat">
         <div className="max-w-7xl mx-auto">
@@ -325,44 +322,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-foreground text-background py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h4 className="font-bold mb-2">ECKINTOSH</h4>
-              <p className="text-sm opacity-75">Engineering Digital Solutions</p>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Services</h4>
-              <ul className="text-sm space-y-2 opacity-75">
-                <li><a href="#services" className="hover:opacity-100">Cloud Infrastructure</a></li>
-                <li><a href="#services" className="hover:opacity-100">Digital Transformation</a></li>
-                <li><a href="#services" className="hover:opacity-100">Consulting</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Company</h4>
-              <ul className="text-sm space-y-2 opacity-75">
-                <li><a href="#about" className="hover:opacity-100">About</a></li>
-                <li><a href="#portfolio" className="hover:opacity-100">Portfolio</a></li>
-                <li><a href="#contact" className="hover:opacity-100">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-bold mb-4">Legal</h4>
-              <ul className="text-sm space-y-2 opacity-75">
-                <li><Link href="/privacy-policy" className="hover:opacity-100">Privacy Policy</Link></li>
-                <li><Link href="/terms-of-service" className="hover:opacity-100">Terms of Service</Link></li>
-                <li><Link href="/cookies" className="hover:opacity-100">Cookies</Link></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-border/20 pt-8 text-center text-sm opacity-75">
-            <p>&copy; 2022 ECKINTOSH. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

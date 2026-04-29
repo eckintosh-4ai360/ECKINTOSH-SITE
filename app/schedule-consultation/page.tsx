@@ -319,7 +319,7 @@ export default function ScheduleConsultation() {
               <div className="rounded-[28px] border border-white/70 bg-white/52 p-5 shadow-[0_24px_70px_rgba(15,23,42,0.06)] backdrop-blur-xl">
                 <h3 className="text-xl font-bold text-gray-900 mb-4">What to Expect</h3>
                 <div className="space-y-5">
-                  <div className="flex gap-4 rounded-2xl border border-white/65 bg-white/52 p-4">
+                  <div className="flex gap-4 rounded-2xl border border-white/65 bg-white/52 p-2">
                     <div className="flex-shrink-0">
                       <Clock className="text-primary" size={24} />
                     </div>
@@ -331,7 +331,7 @@ export default function ScheduleConsultation() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4 rounded-2xl border border-white/65 bg-white/52 p-4">
+                  <div className="flex gap-4 rounded-2xl border border-white/65 bg-white/52 p-2">
                     <div className="flex-shrink-0">
                       <Users className="text-primary" size={24} />
                     </div>
@@ -343,7 +343,7 @@ export default function ScheduleConsultation() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4 rounded-2xl border border-white/65 bg-white/52 p-4">
+                  <div className="flex gap-4 rounded-2xl border border-white/65 bg-white/52 p-2">
                     <div className="flex-shrink-0">
                       <Zap className="text-primary" size={24} />
                     </div>
@@ -355,7 +355,7 @@ export default function ScheduleConsultation() {
                     </div>
                   </div>
 
-                  <div className="flex gap-4 rounded-2xl border border-white/65 bg-white/52 p-4">
+                  <div className="flex gap-4 rounded-2xl border border-white/65 bg-white/52 p-2">
                     <div className="flex-shrink-0">
                       <Check className="text-primary" size={24} />
                     </div>

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Ubuntu } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import Footer from '@/components/footer'
+import { SiteHeader } from '@/components/site-header'
 import './globals.css'
 
 const ubuntu = Ubuntu({
@@ -41,7 +43,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${ubuntu.variable} bg-background`} suppressHydrationWarning>
       <body className="font-sans antialiased" suppressHydrationWarning>
-        {children}
+        <div className="flex min-h-screen flex-col bg-background text-foreground">
+          <SiteHeader />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </div>
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
     </html>
