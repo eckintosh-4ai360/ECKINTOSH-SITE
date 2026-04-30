@@ -55,7 +55,7 @@ export default function ScheduleConsultation() {
 
   return (
     <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,rgba(2,141,163,0.14),transparent_28%),radial-gradient(circle_at_top_right,rgba(15,23,42,0.08),transparent_24%),linear-gradient(180deg,#f7fbfb_0%,#ffffff_36%,#f7fbfb_100%)]">
-      <SiteHeader />
+      {/* <SiteHeader /> */}
 
       {/* Hero Section */}
       <section className="pt-12 sm:pt-6 bg-gradient-to-r from-bg-primary to-bg-primary text-foreground">

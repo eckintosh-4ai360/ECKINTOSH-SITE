@@ -3,18 +3,30 @@
 import Link from 'next/link'
 import { ArrowRight, Check, Award, Users, Globe, Target } from 'lucide-react'
 
+const LEADERSHIP_TEAM = [
+  {
+    name: 'Sarah Chen',
+    title: 'Chief Executive Officer',
+    background: 'Former VP Technology at Fortune 500 tech company',
+    image: '/pic.jpg'
+  },
+  {
+    name: 'Michael Rodriguez',
+    title: 'Chief Technology Officer',
+    background: '20+ years enterprise architecture and cloud solutions',
+    image: '/passpicture.jpg'
+  },
+  {
+    name: 'Jennifer Park',
+    title: 'Chief Delivery Officer',
+    background: 'Leading transformation programs across multiple sectors',
+    image: '/nokoenium.jpg'
+  }
+]
+
 export default function About() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-xl font-bold text-primary">ECKINTOSH</Link>
-            <Link href="/" className="text-primary hover:text-secondary transition">← Back</Link>
-          </div>
-        </div>
-      </nav>
 
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-cyan-50">
@@ -65,8 +77,11 @@ export default function About() {
               { stat: '150+', label: 'Team Members' },
               { stat: '99.9%', label: 'Customer Satisfaction' }
             ].map((item, idx) => (
-              <div key={idx} className="text-center">
-                <div className="text-4xl font-bold text-primary mb-2">{item.stat}</div>
+              <div key={idx} className="text-center relative">
+      <div className="absolute -top-3 left-1/2 -translate-x-1/2 w-8 h-8 bg-card rounded-full border-2 border-primary flex items-center justify-center">
+                  <span className="w-4 h-4 rounded-full bg-primary"></span>
+                </div>
+                <div className="text-4xl font-bold text-primary mb-2 mt-6">{item.stat}</div>
                 <p className="text-muted-foreground">{item.label}</p>
               </div>
             ))}
@@ -134,27 +149,13 @@ export default function About() {
           <p className="text-xl text-muted-foreground text-center mb-12 max-w-3xl mx-auto">
             Industry veterans and thought leaders committed to your success
           </p>
-
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                name: 'Sarah Chen',
-                title: 'Chief Executive Officer',
-                background: 'Former VP Technology at Fortune 500 tech company'
-              },
-              {
-                name: 'Michael Rodriguez',
-                title: 'Chief Technology Officer',
-                background: '20+ years enterprise architecture and cloud solutions'
-              },
-              {
-                name: 'Jennifer Park',
-                title: 'Chief Delivery Officer',
-                background: 'Leading transformation programs across multiple sectors'
-              }
-            ].map((member, idx) => (
+            {LEADERSHIP_TEAM.map((member, idx) => (
               <div key={idx} className="bg-white rounded-xl p-8 text-center border border-border hover:shadow-lg transition">
-                <div className="w-24 h-24 bg-gradient-to-br from-primary to-accent rounded-full mx-auto mb-6"></div>
+                <div 
+                  className="w-24 h-24 bg-cover bg-center rounded-full  mx-auto mb-6"
+                  style={{ backgroundImage: `url('${member.image}')` }}
+                />
                 <h3 className="text-2xl font-bold text-foreground mb-2">{member.name}</h3>
                 <p className="text-primary font-semibold mb-3">{member.title}</p>
                 <p className="text-muted-foreground text-sm">{member.background}</p>

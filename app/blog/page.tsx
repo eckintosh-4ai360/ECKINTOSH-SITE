@@ -4,102 +4,105 @@ import { ArrowRight, Calendar, User, Search } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 
+export const articles = [
+  {
+    id: 1,
+    slug: 'future-of-cloud-architecture-2024',
+    title: 'The Future of Cloud Architecture in 2024',
+    excerpt: 'Exploring emerging trends in cloud infrastructure, including serverless computing, edge computing, and multi-cloud strategies that are reshaping enterprise technology.',
+    category: 'Cloud',
+    author: 'Sarah Chen',
+    date: 'Mar 15, 2024',
+    readTime: '8 min read'
+  },
+  {
+    id: 2,
+    slug: 'why-digital-transformation-fails',
+    title: 'Why Digital Transformation Fails (And How to Succeed)',
+    excerpt: 'Analysis of common pitfalls in digital transformation initiatives and proven strategies to ensure successful adoption across your organization.',
+    category: 'Digital Transformation',
+    author: 'Michael Rodriguez',
+    date: 'Mar 10, 2024',
+    readTime: '10 min read'
+  },
+  {
+    id: 3,
+    slug: 'zero-trust-security-principles',
+    title: 'Zero Trust Security: Moving Beyond the Perimeter',
+    excerpt: 'Deep dive into Zero Trust architecture principles and how enterprises can implement robust security frameworks in modern cloud-native environments.',
+    category: 'Security',
+    author: 'Jennifer Park',
+    date: 'Mar 5, 2024',
+    readTime: '7 min read'
+  },
+  {
+    id: 4,
+    slug: 'ai-ml-enterprise-optimization',
+    title: 'Leveraging AI and Machine Learning for Enterprise Optimization',
+    excerpt: 'Practical guide to implementing AI and ML solutions for business intelligence, process automation, and predictive analytics.',
+    category: 'AI & Analytics',
+    author: 'David Thompson',
+    date: 'Feb 28, 2024',
+    readTime: '9 min read'
+  },
+  {
+    id: 5,
+    slug: 'cloud-tco-analysis',
+    title: 'The Total Cost of Ownership: Beyond Cloud Pricing',
+    excerpt: 'Comprehensive analysis of hidden costs in cloud infrastructure, including operational overhead, training, and optimization expenses.',
+    category: 'Cost Optimization',
+    author: 'Lisa Anderson',
+    date: 'Feb 22, 2024',
+    readTime: '6 min read'
+  },
+  {
+    id: 6,
+    slug: 'devops-best-practices-enterprise',
+    title: 'DevOps Best Practices for Enterprise Deployments',
+    excerpt: 'Practical guide to implementing modern DevOps practices, CI/CD pipelines, and infrastructure automation at enterprise scale.',
+    category: 'DevOps',
+    author: 'James Wilson',
+    date: 'Feb 15, 2024',
+    readTime: '12 min read'
+  },
+  {
+    id: 7,
+    slug: 'data-driven-decision-making',
+    title: 'Data-Driven Decision Making in the Modern Enterprise',
+    excerpt: 'How enterprises are using advanced analytics and business intelligence to drive strategic decision-making and competitive advantage.',
+    category: 'Data Analytics',
+    author: 'Rachel Green',
+    date: 'Feb 8, 2024',
+    readTime: '8 min read'
+  },
+  {
+    id: 8,
+    slug: 'navigating-regulatory-compliance-cloud',
+    title: 'Navigating Regulatory Compliance in Cloud Infrastructure',
+    excerpt: 'Essential guide to managing compliance requirements like GDPR, HIPAA, and SOC 2 while leveraging cloud technology.',
+    category: 'Compliance',
+    author: 'Mark Johnson',
+    date: 'Feb 1, 2024',
+    readTime: '11 min read'
+  }
+]
+
 export default function Blog() {
   const [searchQuery, setSearchQuery] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
 
-  const articles = [
-    {
-      id: 1,
-      title: 'The Future of Cloud Architecture in 2024',
-      excerpt: 'Exploring emerging trends in cloud infrastructure, including serverless computing, edge computing, and multi-cloud strategies that are reshaping enterprise technology.',
-      category: 'Cloud',
-      author: 'Sarah Chen',
-      date: 'Mar 15, 2024',
-      readTime: '8 min read'
-    },
-    {
-      id: 2,
-      title: 'Why Digital Transformation Fails (And How to Succeed)',
-      excerpt: 'Analysis of common pitfalls in digital transformation initiatives and proven strategies to ensure successful adoption across your organization.',
-      category: 'Digital Transformation',
-      author: 'Michael Rodriguez',
-      date: 'Mar 10, 2024',
-      readTime: '10 min read'
-    },
-    {
-      id: 3,
-      title: 'Zero Trust Security: Moving Beyond the Perimeter',
-      excerpt: 'Deep dive into Zero Trust architecture principles and how enterprises can implement robust security frameworks in modern cloud-native environments.',
-      category: 'Security',
-      author: 'Jennifer Park',
-      date: 'Mar 5, 2024',
-      readTime: '7 min read'
-    },
-    {
-      id: 4,
-      title: 'Leveraging AI and Machine Learning for Enterprise Optimization',
-      excerpt: 'Practical guide to implementing AI and ML solutions for business intelligence, process automation, and predictive analytics.',
-      category: 'AI & Analytics',
-      author: 'David Thompson',
-      date: 'Feb 28, 2024',
-      readTime: '9 min read'
-    },
-    {
-      id: 5,
-      title: 'The Total Cost of Ownership: Beyond Cloud Pricing',
-      excerpt: 'Comprehensive analysis of hidden costs in cloud infrastructure, including operational overhead, training, and optimization expenses.',
-      category: 'Cost Optimization',
-      author: 'Lisa Anderson',
-      date: 'Feb 22, 2024',
-      readTime: '6 min read'
-    },
-    {
-      id: 6,
-      title: 'DevOps Best Practices for Enterprise Deployments',
-      excerpt: 'Practical guide to implementing modern DevOps practices, CI/CD pipelines, and infrastructure automation at enterprise scale.',
-      category: 'DevOps',
-      author: 'James Wilson',
-      date: 'Feb 15, 2024',
-      readTime: '12 min read'
-    },
-    {
-      id: 7,
-      title: 'Data-Driven Decision Making in the Modern Enterprise',
-      excerpt: 'How enterprises are using advanced analytics and business intelligence to drive strategic decision-making and competitive advantage.',
-      category: 'Data Analytics',
-      author: 'Rachel Green',
-      date: 'Feb 8, 2024',
-      readTime: '8 min read'
-    },
-    {
-      id: 8,
-      title: 'Navigating Regulatory Compliance in Cloud Infrastructure',
-      excerpt: 'Essential guide to managing compliance requirements like GDPR, HIPAA, and SOC 2 while leveraging cloud technology.',
-      category: 'Compliance',
-      author: 'Mark Johnson',
-      date: 'Feb 1, 2024',
-      readTime: '11 min read'
-    }
-  ]
+  const filteredArticles = articles.filter(article => {
+    const matchesSearch = article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                         article.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
+    const matchesCategory = selectedCategory === 'All' || article.category === selectedCategory
+    return matchesSearch && matchesCategory
+  })
 
-  const filteredArticles = articles.filter(article =>
-    article.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    article.excerpt.toLowerCase().includes(searchQuery.toLowerCase())
-  )
-
-  const categories = Array.from(new Set(articles.map(a => a.category)))
+  const categories = ['All', ...Array.from(new Set(articles.map(a => a.category)))]
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-xl font-bold text-primary">ECKINTOSH</Link>
-            <Link href="/" className="text-primary hover:text-secondary transition">← Back</Link>
-          </div>
-        </div>
-      </nav>
+
 
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-cyan-50">
@@ -119,7 +122,7 @@ export default function Blog() {
               placeholder="Search articles..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 rounded-lg border border-border focus:outline-none focus:ring-2 focus:ring-primary"
+              className="w-full pl-12 pr-4 py-3 rounded-lg border border-gray-800 focus:outline-none focus:ring-2 focus:ring-primary"
             />
           </div>
         </div>
@@ -129,13 +132,15 @@ export default function Blog() {
       <section className="py-8 px-4 sm:px-6 lg:px-8 border-b border-border">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-wrap gap-3">
-            <button className="px-4 py-2 rounded-full bg-primary text-primary-foreground font-medium text-sm">
-              All
-            </button>
             {categories.map((category) => (
               <button
                 key={category}
-                className="px-4 py-2 rounded-full bg-card border border-border text-foreground font-medium text-sm hover:border-primary transition"
+                onClick={() => setSelectedCategory(category)}
+                className={`px-4 py-2 rounded-full font-medium text-sm transition ${
+                  selectedCategory === category
+                    ? 'bg-primary text-primary-foreground shadow-md'
+                    : 'bg-card border border-border text-foreground hover:border-primary hover:bg-white'
+                }`}
               >
                 {category}
               </button>
@@ -182,9 +187,12 @@ export default function Blog() {
                     <span>{article.readTime}</span>
                   </div>
 
-                  <button className="text-primary font-semibold hover:text-secondary transition flex items-center gap-2 group">
+                  <Link
+                    href={`/blog/${article.slug}`}
+                    className="text-primary font-semibold hover:text-secondary transition flex items-center gap-2 group"
+                  >
                     Read More <ArrowRight size={16} className="group-hover:translate-x-1 transition" />
-                  </button>
+                  </Link>
                 </article>
               ))}
             </div>

@@ -46,15 +46,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-xl font-bold text-primary">ECKINTOSH</Link>
-            <Link href="/" className="text-primary hover:text-secondary transition">← Back</Link>
-          </div>
-        </div>
-      </nav>
+    
 
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-cyan-50">
@@ -76,19 +68,19 @@ export default function Contact() {
               {
                 icon: <Phone className="text-primary" size={32} />,
                 title: 'Phone',
-                details: '+1 (555) 123-4567',
+                details: '+233 (0) 53 115 2121',
                 additional: 'Available 24/7 for urgent matters'
               },
               {
                 icon: <Mail className="text-primary" size={32} />,
                 title: 'Email',
-                details: 'hello@eckintosh.com',
+                details: 'eckintosh@gmail.com',
                 additional: 'Response within 2 business hours'
               },
               {
                 icon: <MapPin className="text-primary" size={32} />,
                 title: 'Office',
-                details: '123 Tech Street, San Francisco, CA',
+                details: '123 Tech Street, Mumford, CA',
                 additional: 'Multiple locations worldwide'
               }
             ].map((contact, idx) => (
@@ -295,9 +287,9 @@ export default function Contact() {
           <div className="grid md:grid-cols-4 gap-8">
             {[
               {
-                city: 'San Francisco',
+                city: 'Mumford',
                 region: 'Headquarters',
-                address: '123 Tech Street, San Francisco, CA 94102'
+                address: '123 Tech Street, Mumford, CA 94102'
               },
               {
                 city: 'New York',

@@ -6,7 +6,7 @@ import { FileText, Gavel, Scale, AlertTriangle, Copyright, HelpCircle } from 'lu
 export default function TermsOfService() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <SiteHeader />
+      {/* <SiteHeader /> */}
 
       <main className="max-w-4xl mx-auto py-20 px-6 sm:px-8">
         <div className="text-center mb-16">
@@ -97,18 +97,14 @@ export default function TermsOfService() {
             </p>
             <div className="text-foreground font-medium">
               <p>ECKINTOSH</p>
-              <p>Email: legal@eckintosh.com</p>
-              <p>Address: 123 Tech Avenue, San Francisco, CA 94105</p>
+              <p>Email: eckintosh@gmail.com</p>
+              <p>Address: 123 Tech Avenue, Mumford, CA 94105</p>
             </div>
           </section>
         </div>
       </main>
 
-      <footer className="bg-foreground text-background py-12 px-4 sm:px-6 lg:px-8 border-t border-border/20">
-        <div className="max-w-7xl mx-auto text-center">
-          <p className="text-sm opacity-75">&copy; 2026 ECKINTOSH. All rights reserved.</p>
-        </div>
-      </footer>
+     
     </div>
   )
 }

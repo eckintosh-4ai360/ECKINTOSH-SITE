@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { usePathname } from 'next/navigation'
 import {
   ArrowRight,
   BriefcaseBusiness,
@@ -9,11 +10,13 @@ import {
   House,
   Menu,
   MessageSquare,
+  Newspaper,
   X,
   type LucideIcon,
 } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 type NavigationItem = {
   icon: LucideIcon
@@ -26,6 +29,7 @@ const navigation: NavigationItem[] = [
   { icon: BriefcaseBusiness, label: 'Services', href: '/#services' },
   { icon: Building2, label: 'About', href: '/about' },
   { icon: FolderKanban, label: 'Work', href: '/portfolio' },
+  { icon: Newspaper, label: 'Blog', href: '/blog' },
   { icon: MessageSquare, label: 'Contact', href: '/contact' },
 ]
 
@@ -39,9 +43,23 @@ export function SiteHeader({
   ctaLabel = 'Book a call',
 }: SiteHeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const pathname = usePathname()
+
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/'
+    if (href.startsWith('/#')) {
+      return pathname === '/' // Simplification: highlight home if it's a hash link on home
+    }
+    return pathname.startsWith(href)
+  }
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl">
+    <motion.nav 
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+      className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-xl"
+    >
       <div className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8">
         <div className="flex items-center gap-3 rounded-[30px] border border-border/80 bg-white/88 px-3 py-3 shadow-[0_18px_55px_rgba(15,23,42,0.08)]">
           <Link
@@ -60,27 +78,41 @@ export function SiteHeader({
 
           <div className="hidden flex-1 justify-center px-4 lg:flex">
             <div className="flex items-center gap-2 rounded-full border border-slate-200/80 bg-[linear-gradient(180deg,_rgba(248,250,252,0.96),_rgba(255,255,255,0.92))] p-2 shadow-inner">
-              {navigation.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="group flex items-center gap-3 rounded-full px-4 py-2.5 transition hover:bg-white hover:shadow-sm"
-                >
-                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-primary transition group-hover:bg-primary group-hover:text-primary-foreground">
-                    <item.icon size={16} />
-                  </span>
-                  <span className="text-sm font-semibold text-slate-700 transition group-hover:text-primary">
-                    {item.label}
-                  </span>
-                </Link>
-              ))}
+              {navigation.map((item) => {
+                const active = isActive(item.href)
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className={`group relative flex items-center gap-3 rounded-full px-4 py-2.5 transition ${
+                      active ? 'text-primary' : 'text-slate-700 hover:text-primary'
+                    }`}
+                  >
+                    {active && (
+                      <motion.div
+                        layoutId="activeNav"
+                        className="absolute inset-0 z-0 rounded-full bg-primary/5"
+                        transition={{ type: 'spring', bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    <span className={`relative z-10 flex h-8 w-8 items-center justify-center rounded-full transition ${
+                      active ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground'
+                    }`}>
+                      <item.icon size={16} />
+                    </span>
+                    <span className="relative z-10 text-sm font-semibold transition">
+                      {item.label}
+                    </span>
+                  </Link>
+                )
+              })}
             </div>
           </div>
 
           <div className="ml-auto hidden items-center gap-3 sm:flex">
             <div className="hidden items-center gap-2 rounded-full border border-emerald-200/80 bg-emerald-50 px-3 py-2 text-xs font-medium text-emerald-700 xl:inline-flex">
               <span className="h-2 w-2 rounded-full bg-emerald-500" />
-              Available for new projects
+              Available
             </div>
             <Link
               href={ctaHref}
@@ -106,19 +138,28 @@ export function SiteHeader({
           <div className="mt-3 rounded-[28px] border border-border/80 bg-white/95 p-4 shadow-[0_24px_60px_rgba(15,23,42,0.1)] lg:hidden">
             
             <div className="grid gap-2">
-              {navigation.map((item) => (
-                <Link
-                  key={item.label}
-                  href={item.href}
-                  className="flex items-center gap-3 rounded-2xl border border-border/70 px-4 py-3 transition hover:border-primary/30 hover:bg-primary/5"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-primary">
-                    <item.icon size={18} />
-                  </span>
-                  <span className="text-sm font-semibold text-foreground">{item.label}</span>
-                </Link>
-              ))}
+              {navigation.map((item) => {
+                const active = isActive(item.href)
+                return (
+                  <Link
+                    key={item.label}
+                    href={item.href}
+                    className={`flex items-center gap-3 rounded-2xl border px-4 py-3 transition ${
+                      active 
+                        ? 'border-primary/30 bg-primary/5 text-primary' 
+                        : 'border-border/70 text-foreground hover:border-primary/30 hover:bg-primary/5'
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <span className={`flex h-9 w-9 items-center justify-center rounded-full transition ${
+                      active ? 'bg-primary text-primary-foreground' : 'bg-primary/10 text-primary'
+                    }`}>
+                      <item.icon size={18} />
+                    </span>
+                    <span className="text-sm font-semibold">{item.label}</span>
+                  </Link>
+                )
+              })}
             </div>
 
             <Link
@@ -132,6 +173,6 @@ export function SiteHeader({
           </div>
         )}
       </div>
-    </nav>
+    </motion.nav>
   )
 }

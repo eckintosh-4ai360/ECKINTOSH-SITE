@@ -2,23 +2,16 @@
 
 import { ArrowRight, Check, Lightbulb, Users, Gauge } from 'lucide-react'
 import Link from 'next/link'
+import { Reveal, StaggerContainer, StaggerItem } from '@/components/motion-wrapper'
 
 export default function DigitalTransformation() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-xl font-bold text-primary">ECKINTOSH</Link>
-            <Link href="/" className="text-primary hover:text-secondary transition">← Back</Link>
-          </div>
-        </div>
-      </nav>
+     
 
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-cyan-50">
-        <div className="max-w-7xl mx-auto">
+        <Reveal direction="right" className="max-w-7xl mx-auto">
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6 leading-tight">
             Digital <span className="text-primary">Transformation</span> Services
           </h1>
@@ -28,14 +21,16 @@ export default function DigitalTransformation() {
           <button className="bg-primary text-primary-foreground px-8 py-3 rounded-lg hover:bg-secondary transition font-semibold flex items-center gap-2">
             Schedule Consultation <ArrowRight size={20} />
           </button>
-        </div>
+        </Reveal>
       </section>
 
       {/* Services Overview */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-foreground mb-12">Our Approach</h2>
-          <div className="grid md:grid-cols-2 gap-8">
+          <Reveal direction="up">
+            <h2 className="text-4xl font-bold text-foreground mb-12">Our Approach</h2>
+          </Reveal>
+          <StaggerContainer className="grid md:grid-cols-2 gap-8">
             {[
               {
                 title: 'Strategy & Assessment',
@@ -58,7 +53,7 @@ export default function DigitalTransformation() {
                 features: ['ERP implementation', 'CRM systems', 'Analytics platforms', 'Integration services']
               }
             ].map((service, idx) => (
-              <div key={idx} className="bg-card border border-border rounded-xl p-8">
+              <StaggerItem key={idx} className="bg-card border border-border rounded-xl p-8">
                 <h3 className="text-2xl font-bold text-foreground mb-3">{service.title}</h3>
                 <p className="text-muted-foreground mb-6">{service.description}</p>
                 <ul className="space-y-2">
@@ -69,9 +64,9 @@ export default function DigitalTransformation() {
                     </li>
                   ))}
                 </ul>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -110,8 +105,10 @@ export default function DigitalTransformation() {
       {/* Case Study */}
       <section className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-4xl font-bold text-foreground mb-12">Case Study</h2>
-          <div className="bg-card border border-border rounded-xl p-12">
+          <Reveal direction="up" className="mb-12">
+            <h2 className="text-4xl font-bold text-foreground">Case Study</h2>
+          </Reveal>
+          <Reveal direction="up" delay={0.2} className="bg-card border border-border rounded-xl p-12">
             <div className="grid md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-2xl font-bold text-foreground mb-4">Banking Sector Digital Overhaul</h3>
@@ -130,7 +127,7 @@ export default function DigitalTransformation() {
                 </div>
               </div>
               <div>
-                <div className="bg-gradient-to-br from-primary to-accent rounded-xl p-8 text-white">
+                <div className="bg-gradient-to-br from-primary to-accent rounded-xl p-8 text-white h-full flex flex-col justify-center">
                   <div className="space-y-6">
                     <div>
                       <div className="text-4xl font-bold mb-2">40%</div>
@@ -148,7 +145,7 @@ export default function DigitalTransformation() {
                 </div>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 

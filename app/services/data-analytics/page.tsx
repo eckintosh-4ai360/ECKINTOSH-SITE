@@ -2,28 +2,16 @@
 
 import { ArrowRight, Check, BarChart3, Zap, TrendingUp, Users, Award, Database } from 'lucide-react'
 import Link from 'next/link'
+import { Reveal, StaggerContainer, StaggerItem, FadeIn } from '@/components/motion-wrapper'
 
 export default function DataAnalyticsPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      {/* Header Navigation */}
-      <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold text-primary">
-            ECKINTOSH
-          </Link>
-          <nav className="hidden md:flex gap-8">
-            <Link href="/" className="text-gray-600 hover:text-primary transition">Home</Link>
-            <Link href="/portfolio" className="text-gray-600 hover:text-primary transition">Portfolio</Link>
-            <Link href="/contact" className="text-gray-600 hover:text-primary transition">Contact</Link>
-          </nav>
-        </div>
-      </header>
 
       {/* Hero Section */}
       <section className="py-16 sm:py-24 bg-gradient-to-r from-blue-600 to-cyan-500 text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl">
+          <Reveal direction="right" className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full mb-6">
               <BarChart3 size={16} />
               <span className="text-sm font-semibold">Data-Driven Intelligence</span>
@@ -42,16 +30,18 @@ export default function DataAnalyticsPage() {
                 View Case Studies
               </Link>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Service Overview */}
       <section className="py-16 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-center">Our Analytics Solutions</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
+          <Reveal direction="up" className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold">Our Analytics Solutions</h2>
+          </Reveal>
+          <StaggerContainer className="grid md:grid-cols-2 gap-8">
+            <StaggerItem className="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
               <Database className="text-primary mb-4" size={32} />
               <h3 className="text-2xl font-bold mb-4">Data Engineering</h3>
               <p className="text-gray-600 mb-4">
@@ -71,9 +61,9 @@ export default function DataAnalyticsPage() {
                   <span>Real-time streaming infrastructure</span>
                 </li>
               </ul>
-            </div>
+            </StaggerItem>
 
-            <div className="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
+            <StaggerItem className="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
               <BarChart3 className="text-primary mb-4" size={32} />
               <h3 className="text-2xl font-bold mb-4">Business Intelligence</h3>
               <p className="text-gray-600 mb-4">
@@ -93,9 +83,9 @@ export default function DataAnalyticsPage() {
                   <span>Self-service analytics platforms</span>
                 </li>
               </ul>
-            </div>
+            </StaggerItem>
 
-            <div className="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
+            <StaggerItem className="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
               <TrendingUp className="text-primary mb-4" size={32} />
               <h3 className="text-2xl font-bold mb-4">Predictive Analytics</h3>
               <p className="text-gray-600 mb-4">
@@ -115,9 +105,9 @@ export default function DataAnalyticsPage() {
                   <span>Anomaly detection systems</span>
                 </li>
               </ul>
-            </div>
+            </StaggerItem>
 
-            <div className="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
+            <StaggerItem className="bg-white p-8 rounded-xl border border-gray-200 hover:shadow-lg transition">
               <Zap className="text-primary mb-4" size={32} />
               <h3 className="text-2xl font-bold mb-4">Advanced Analytics</h3>
               <p className="text-gray-600 mb-4">
@@ -137,8 +127,8 @@ export default function DataAnalyticsPage() {
                   <span>NLP and computer vision applications</span>
                 </li>
               </ul>
-            </div>
-          </div>
+            </StaggerItem>
+          </StaggerContainer>
         </div>
       </section>
 
@@ -205,7 +195,7 @@ export default function DataAnalyticsPage() {
 
       {/* CTA Section */}
       <section className="py-16 sm:py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <Reveal direction="up" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">Ready to Leverage Data as Your Competitive Advantage?</h2>
           <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
             Let's explore how advanced analytics can transform your business decisions and drive measurable growth.
@@ -213,49 +203,8 @@ export default function DataAnalyticsPage() {
           <Link href="/schedule-consultation" className="inline-flex bg-primary text-primary-foreground px-8 py-4 rounded-lg hover:bg-secondary transition font-semibold gap-2">
             Start Your Analytics Journey <ArrowRight size={20} />
           </Link>
-        </div>
+        </Reveal>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <h4 className="text-white font-bold mb-4">Services</h4>
-              <ul className="space-y-2">
-                <li><Link href="/services/data-analytics" className="hover:text-white transition">Data Analytics</Link></li>
-                <li><Link href="/services/cloud-infrastructure" className="hover:text-white transition">Cloud Infrastructure</Link></li>
-                <li><Link href="/services/digital-transformation" className="hover:text-white transition">Digital Transformation</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-4">Company</h4>
-              <ul className="space-y-2">
-                <li><Link href="/about" className="hover:text-white transition">About</Link></li>
-                <li><Link href="/portfolio" className="hover:text-white transition">Portfolio</Link></li>
-                <li><Link href="/blog" className="hover:text-white transition">Blog</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-4">Resources</h4>
-              <ul className="space-y-2">
-                <li><Link href="/case-studies" className="hover:text-white transition">Case Studies</Link></li>
-                <li><Link href="/contact" className="hover:text-white transition">Contact</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-white font-bold mb-4">Legal</h4>
-              <ul className="space-y-2">
-                <li><a href="#" className="hover:text-white transition">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-white transition">Terms of Service</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 pt-8 text-center">
-            <p>&copy; 2024 ECKINTOSH. All rights reserved.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   )
 }

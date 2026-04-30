@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { ArrowLeft, ArrowRight, Menu, Sparkles, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { Reveal, StaggerContainer, StaggerItem, FadeIn } from '@/components/motion-wrapper'
 
 const navigation = [
   { label: 'Overview', href: '#overview' },
@@ -117,6 +118,11 @@ const impactStats = [
 
 export default function Portfolio() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeFilter, setActiveFilter] = useState('All')
+
+  const filteredProjects = activeFilter === 'All' 
+    ? projects 
+    : projects.filter(project => project.industry === activeFilter)
 
   return (
     <div className="relative isolate min-h-screen overflow-hidden bg-[linear-gradient(180deg,#f7fbfb_0%,#ffffff_34%,#f7fbfb_68%,#f9fbfd_100%)] text-foreground">
@@ -127,105 +133,7 @@ export default function Portfolio() {
         <div className="absolute bottom-[-8rem] left-1/3 h-[18rem] w-[18rem] rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.12)_0%,rgba(6,182,212,0)_74%)] blur-3xl" />
       </div>
 
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-white/58 backdrop-blur-xl">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-20 items-center gap-4">
-            <Link href="/" className="flex min-w-0 items-center gap-3">
-              <div className="relative h-11 w-11 overflow-hidden rounded-lg border border-border/70 bg-white shadow-sm">
-                <Image
-                  src="/logo.png"
-                  alt="ECKINTOSH Logo"
-                  fill
-                  sizes="44px"
-                  className="object-cover"
-                />
-              </div>
-              <div className="min-w-0">
-                <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-                  Portfolio
-                </p>
-                <p className="truncate text-base font-semibold text-foreground sm:text-lg">
-                  ECKINTOSH
-                </p>
-              </div>
-            </Link>
-
-            <nav className="hidden lg:flex items-center gap-1 rounded-full border border-border/80 bg-white/70 px-2 py-2 shadow-sm">
-              {navigation.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition hover:bg-primary/5 hover:text-primary"
-                >
-                  {item.label}
-                </a>
-              ))}
-            </nav>
-
-            <div className="ml-auto hidden sm:flex items-center gap-3">
-              <Link
-                href="/"
-                className="inline-flex h-11 items-center gap-2 rounded-full border border-border bg-background px-4 text-sm font-medium text-foreground transition hover:border-primary/30 hover:text-primary"
-              >
-                <ArrowLeft size={16} />
-                Home
-              </Link>
-              <Link
-                href="/schedule-consultation"
-                className="inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_rgba(37,99,235,0.22)] transition hover:bg-secondary"
-              >
-                Start a project
-                <ArrowRight size={16} />
-              </Link>
-            </div>
-
-            <button
-              type="button"
-              aria-expanded={mobileMenuOpen}
-              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
-              className="ml-auto inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-white/80 text-foreground shadow-sm transition hover:border-primary/30 hover:text-primary sm:hidden"
-              onClick={() => setMobileMenuOpen((open) => !open)}
-            >
-              {mobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
-            </button>
-          </div>
-
-          {mobileMenuOpen && (
-            <div className="border-t border-border/80 py-4 sm:hidden">
-              <div className="flex flex-col gap-2">
-                {navigation.map((item) => (
-                  <a
-                    key={item.label}
-                    href={item.href}
-                    className="rounded-lg px-3 py-3 text-sm font-medium text-foreground transition hover:bg-primary/5 hover:text-primary"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </a>
-                ))}
-              </div>
-              <div className="mt-4 grid grid-cols-2 gap-3">
-                <Link
-                  href="/"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-background px-4 py-3 text-sm font-medium text-foreground transition hover:border-primary/30 hover:text-primary"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <ArrowLeft size={16} />
-                  Home
-                </Link>
-                <Link
-                  href="/schedule-consultation"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-4 py-3 text-sm font-semibold text-primary-foreground transition hover:bg-secondary"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Start
-                  <ArrowRight size={16} />
-                </Link>
-              </div>
-            </div>
-          )}
-        </div>
-      </header>
+     
 
       {/* Hero Section */}
       <section
@@ -233,14 +141,11 @@ export default function Portfolio() {
         className="scroll-mt-28 border-b border-border/60 px-4 py-16 sm:px-6 sm:py-20 lg:px-8"
       >
         <div className="max-w-7xl mx-auto">
-          <div className="rounded-[32px] border border-white/80 bg-white/54 p-8 shadow-[0_28px_90px_rgba(15,23,42,0.08)] backdrop-blur-md sm:p-10 lg:p-12">
+          <Reveal direction="up" className="rounded-[32px] border border-white/80 bg-white/54 p-8 shadow-[0_28px_90px_rgba(15,23,42,0.08)] backdrop-blur-md sm:p-10 lg:p-12">
             <div className="grid gap-12 lg:grid-cols-[minmax(0,1.15fr)_minmax(320px,0.85fr)] lg:items-end">
             <div>
               <div className="mb-6 flex flex-wrap items-center gap-3">
-                <span className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-primary">
-                  <Sparkles size={14} />
-                  Selected enterprise transformations
-                </span>
+               
                 <span className="text-sm text-muted-foreground">
                   Strategy, delivery, and measurable results at enterprise scale.
                 </span>
@@ -273,18 +178,19 @@ export default function Portfolio() {
             </div>
 
             <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
-              {headerStats.map((item) => (
-                <div
-                  key={item.label}
-                  className="rounded-2xl border border-white/85 bg-white/78 p-5 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur"
-                >
-                  <div className="text-3xl font-bold text-primary">{item.value}</div>
-                  <p className="mt-2 text-sm text-muted-foreground">{item.label}</p>
-                </div>
+              {headerStats.map((item, idx) => (
+                <FadeIn key={item.label} delay={0.2 + idx * 0.1}>
+                  <div
+                    className="rounded-2xl border border-white/85 bg-white/78 p-5 shadow-[0_18px_45px_rgba(15,23,42,0.08)] backdrop-blur"
+                  >
+                    <div className="text-3xl font-bold text-primary">{item.value}</div>
+                    <p className="mt-2 text-sm text-muted-foreground">{item.label}</p>
+                  </div>
+                </FadeIn>
               ))}
             </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
@@ -293,30 +199,31 @@ export default function Portfolio() {
         id="industries"
         className="scroll-mt-28 border-b border-border/60 bg-white/42 px-4 py-12 backdrop-blur-sm sm:px-6 lg:px-8"
       >
-        <div className="max-w-7xl mx-auto">
+        <FadeIn direction="none" delay={0.3}>
           <div className="flex flex-wrap gap-4">
-            {filters.map((filter, idx) => (
+            {filters.map((filter) => (
               <button
                 key={filter}
+                onClick={() => setActiveFilter(filter)}
                 className={`px-6 py-2 rounded-full font-medium transition ${
-                  idx === 0
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-card border border-border text-foreground hover:border-primary'
+                  activeFilter === filter
+                    ? 'bg-primary text-primary-foreground shadow-md'
+                    : 'bg-card border border-border text-foreground hover:border-primary hover:bg-white'
                 }`}
               >
                 {filter}
               </button>
             ))}
           </div>
-        </div>
+        </FadeIn>
       </section>
 
       {/* Portfolio Grid */}
       <section id="featured-work" className="scroll-mt-28 py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-8">
-            {projects.map((project) => (
-              <div
+          <StaggerContainer className="grid md:grid-cols-2 gap-8">
+            {filteredProjects.map((project) => (
+              <StaggerItem
                 key={project.title}
                 className="overflow-hidden rounded-[28px] border border-white/85 bg-white/72 shadow-[0_20px_60px_rgba(15,23,42,0.06)] backdrop-blur-sm transition hover:-translate-y-1 hover:shadow-[0_26px_80px_rgba(15,23,42,0.09)]"
               >
@@ -365,9 +272,21 @@ export default function Portfolio() {
                     View Case Study <ArrowRight size={16} />
                   </Link>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
+          
+          {filteredProjects.length === 0 && (
+            <div className="text-center py-20">
+              <p className="text-xl text-muted-foreground">No projects found for the selected industry.</p>
+              <button 
+                onClick={() => setActiveFilter('All')}
+                className="mt-4 text-primary font-semibold hover:underline"
+              >
+                Clear filters
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

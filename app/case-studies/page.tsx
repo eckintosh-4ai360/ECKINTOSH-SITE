@@ -177,7 +177,7 @@ export default function CaseStudies() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      <SiteHeader />
+      {/* <SiteHeader /> */}
 
       {/* Navigation */}
       <nav className="hidden sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-border">

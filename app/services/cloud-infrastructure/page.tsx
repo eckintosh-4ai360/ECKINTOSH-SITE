@@ -6,15 +6,7 @@ import Link from 'next/link'
 export default function CloudInfrastructure() {
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Navigation */}
-      <nav className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="text-xl font-bold text-primary">ECKINTOSH</Link>
-            <Link href="/" className="text-primary hover:text-secondary transition">← Back</Link>
-          </div>
-        </div>
-      </nav>
+     
 
       {/* Hero Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-cyan-50">
